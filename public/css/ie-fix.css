@@ -1,0 +1,32 @@
+/* CSS PIE fix for IE8 Drop-shadow & Rounded Borders */
+.ie8 .apply-pie {
+    behavior: url("/app/css/PIE.htc");
+    position: relative;
+}
+
+.ie .hide {
+    filter: alpha(opacity = 0);
+}
+
+/* Navigation fixes */
+.navigation .count {
+    top: 3px;
+}
+
+/* Oversize browse button to fill parent */
+#file {
+    font-size: 100px;
+}
+
+/* Shopping cart fixes */
+.cart-totals {
+    width: 205px;
+}
+.cart-totals .right.button input {
+    min-width: 125px;
+}
+
+/* Order Form fixes */
+.orderform .right input, .review .buttons .right input {
+    min-width: 133px;
+}
