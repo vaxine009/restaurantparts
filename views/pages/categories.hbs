@@ -1,0 +1,48 @@
+{{#> master}}
+{{#*inline "content"}}
+
+
+<div class="col-sm-8 text-center col-sm-offset-2 paddingT20" id="resultcontainer">
+    <div class="row">
+        {{#each parts}}
+        <form action="/sp_main_detail" method="post" name="sp{{@index}}">
+            <input name="CakeFlavour" value="Original" type="hidden">
+            <input name="did" value="Specialty Cakes" type="hidden">
+            <input type="hidden" name="CakeSizeShape" value="{{../Cakedesign}}" />
+            <input name="flag" value="Y" type="hidden">
+            <input type="hidden" name="price" id="price" value="{{this.price}}" />
+            <input type="hidden" name="Cakedesign" id="Cakedesign" value="{{this.sname}}" />
+
+            <div class="col-md-6 paddingT10 paddingB10" onclick="document.sp{{@index}}.submit();">
+                <label class="pointer">
+                    <h5>{{this.sname}}</h5>
+                    <div>
+                        <img src="{{getImageUrl simage id}}" alt="1" width="194" height="114" />
+                    </div>
+                    <div class="paddingT10">{{this.content}}</div>
+                    <strong class="text-red">{{this.price}}</strong>
+                </label>
+            </div>
+        </form>
+        {{/each}}
+    </div>
+</div>
+
+{{/inline}}
+{{/master}}
+
+<script>
+
+    function validateForm() {
+        var agencyInput = document.getElementById("tb_agency_new").value;
+        var regex = /^\s*\d{3}-?\d{3}-?\d{3}\w{1}\s*$/;
+
+        if (!regex.test(agencyInput)) {
+            document.getElementById("AgencyError").innerText = "Invalid Agency Number";
+            return false;
+        } else {
+            document.getElementById("AgencyError").innerText = "";
+            return true;
+        }
+    }
+</script>

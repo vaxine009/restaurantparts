@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="SHORTCUT ICON" href="../favicon.ico">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords"
+    content="restaurant parts, restaurant equipment parts, used restaurant equipment parts, coupons, commercial kitchen parts, restaurant equipment parts near me, restaurant parts near me, kitchen equipment parts, dairy queen parts, dairy queen equipment for sale, dairy queen ice cream machine for sale, used dairy queen equipment for sale, used dairy queen equipment, dairy queen self serve machine, soft serve machine, soft serve ice cream machine, soft ice cream machine, duke soft ice cream machine" />
+  <meta name="description"
+    content="Get High Quality for Less. Shop a largest collection of used and new Kitchen Restaurant Equipment and Parts and Other Supplies. Easy Online payment and Free local pickups" />
+
+  <title>RESTAURANT EQUIPMENT & PARTS</title>
+  <title>Agent Transfer</title>
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/sleekslider.css">
+  <link rel="stylesheet" type="text/css" href="../css/app.css?v=1.2">
+  <link rel="stylesheet" type="text/css" href="../css/sleeksliderresponsive.css">
+  </head>
+  
+  <body id="home" class="homepage">
+    <div class="main">
+      <div id="navbar">
+        {{> navbar }}
+      </div>
+      <div class="content">
+        <section class="text-pureblack backgrounds-white">
+          <div class="menu-head sub-headers">
+            <form name="frm5" class="orderform container" action="/sp_main_detail" method="post">
+              <div class="col-xs-8 col-xs-offset-2">
+                <h3>Search Entire Inventory By Part Number or Description:</h3>
+                <input type="hidden" name="Cakedesign" id="Cakedesign" value="<?= $_REQUEST['Cakedesign']; ?>" />
+                <input type="text" name="ser_cake" id="ser_cake" style="width:300px;" value="{{../Ser_Part}}" />
+                <div class="button right red">
+                  <span class="middle">
+                    <input name="Searchbtn" type="submit" class="sub-btn-new" id="Searchbtn" value="Search"
+                      align="left" />
+                  </span>
+                  <span class="end"></span>
+                  <span class="arrow"></span>
+                </div>
+              </div>
+            </form>
+            <br>
+            <h2>Restaurant Equipment & Parts</h2>
+            <h3>GTA Ontario</h3>
+            <div class="sub-header-bottom-trim"></div>
+            <div class="sub-header-bottom-cap"></div>
+          </div>
+          {{> content}}
+        </section>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="clear"></div>
+    <div class="lower-footer">
+      <div class="lower-footer-center">
+        <div class="col-sm-6">
+          <a href="https://restaurantparts.ca"><img class="so-good" src="../img/logo_dqt2.png"
+              alt="Good Quality for Less"></a>
+        </div>
+  
+        <div class="col-md-6">
+          <section id="legalLinks" class="legal">
+            <p class="ng-binding">&#64; Restaurant Parts Corp <span class="mobile-only-spacing"></span></p>
+            <nav>
+              <a class="border-right" target="_blank" href="https://www.restaurantparts.ca/privacy.html"
+                title="Privacy Statement" data-event="Privacy_Statement" target="_blank">Privacy Statement</a>
+              <a class="border-right" target="_blank" href="https://www.restaurantparts.ca/privacy.html"
+                title="Visitor Agreement" data-event="Visitor_Agreement" target="_blank">Visitor Agreement</a>
+              <a target="_blank" title="Accessibility Statement" data-event="Accessibility_Statement"
+                href="https://www.restaurantparts.ca/privacy.html">Accessibility Statement</a>
+            </nav>
+          </section>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="../js/Application.min.js"></script>
+<script type="text/javascript" src="../js/sleekslider.js"></script>
+<script type="text/javascript" src="../js/skrollr.js"></script>
+<script type="text/javascript" src="../js/isotope.pkgd.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    // ---------- Banner Slider ---------- //
+    $('#sleekslider').sleekslider({
+      thumbs: ['thumnail-1.jpg', 'thumnail-3.jpg', 'thumnail-4.jpg'],
+      labels: ['Slide 1', 'Slide 2', 'Slide 3'],
+      speed: 4000
+    });
+
+    //Load Skrollr
+    var skr0llr = skrollr.init({
+      mobileCheck: function () {
+        //hack - forces mobile version to be off
+        return false;
+      }
+    });
+
+    // ------- Mesonary ------- //
+    var $container = $('#filter-masonry');
+    var $optionSets = $('.option-set');
+    var $optionLinks = $optionSets.find('a');
+
+    function doIsotopeFilter() {
+      if ($().isotope) {
+        var isotopeFilter = '';
+        $optionLinks.each(function () {
+          var selector = $(this).attr('data-filter');
+          var link = window.location.href;
+          var firstIndex = link.indexOf('filter=');
+          if (firstIndex > 0) {
+            var id = link.substring(firstIndex + 7, link.length);
+            if ('.' + id == selector) {
+              isotopeFilter = '.' + id;
+            }
+          }
+        });
+        $container.isotope({
+          itemSelector: '.masonry-grid'
+          //,filter: isotopeFilter
+        });
+        $optionLinks.each(function () {
+          var $this = $(this);
+          var selector = $this.attr('data-filter');
+          if (selector == isotopeFilter) {
+            if (!$this.hasClass('selected')) {
+              var $optionSet = $this.parents('.option-set');
+              $optionSet.find('.selected').removeClass('selected');
+              $this.addClass('selected');
+            }
+          }
+        });
+        $optionLinks.on('click', function () {
+          var $this = $(this);
+          var selector = $this.attr('data-filter');
+          $container.isotope({
+            itemSelector: '.masonry-grid',
+            filter: selector
+          });
+          if (!$this.hasClass('selected')) {
+            var $optionSet = $this.parents('.option-set');
+            $optionSet.find('.selected').removeClass('selected');
+            $this.addClass('selected');
+          }
+          return false;
+        });
+      }
+    }
+    var isotopeTimer = window.setTimeout(function () {
+      window.clearTimeout(isotopeTimer);
+      doIsotopeFilter();
+    }, 4000);
+
+    // ------- Mesonary ------- // 
+  });
+
+  function MM_openBrWindowi(theURL, winName, wi, hi) {
+    var sizez = "scrollbars=yes,width=" + wi + ",height=" + hi;
+    window.open(theURL, winName, sizez);
+  }
+
+  function MM_openBrWindow(theURL, winName, features) { //v2.0
+    window.open(theURL, winName, features);
+  }
+
+  function n_chk() {
+
+    if (document.nw.name1.value == '') {
+      alert("Enter your name");
+      document.nw.name1.focus();
+      return false;
+    }
+
+    if (document.nw.email_id.value == '') {
+      alert("Enter your email address");
+      document.nw.email_id.focus();
+      return false;
+    }
+    if (!emailInvalid(document.nw.email_id.value)) {
+      alert("Please enter valid email address");
+      document.nw.email_id.focus();
+      return false;
+    }
+  }
+
+  function emailInvalid(s) {
+    if (!(s.match(/^[\w]+([_|\.-][\w]{1,})*@[\w]{2,}([_|\.-][\w]{1,})*\.([a-z]{2,4})$/i))) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+</script>
+</body>
+
+</html>
