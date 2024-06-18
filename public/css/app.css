@@ -982,6 +982,17 @@ font-size: 16px !important;}
         /*background: url(../img/footer/bg-black-30-pct.png)*/
     }
 
+    .footer .footer-contactus a {
+        text-decoration: none;
+        white-space: nowrap;
+        text-align: left;
+        color: white
+    }
+
+        .footer .footer-contactus a:hover {
+            color: #E5D6C3
+        }
+
     .footer .footer-highlights {
         background: url(../img/footer/footer-shadow.png) repeat-x;
         width: 960px;

@@ -21,67 +21,107 @@
   <link rel="stylesheet" type="text/css" href="../css/app.css?v=1.2">
   <link rel="stylesheet" type="text/css" href="../css/sleeksliderresponsive.css">
   </head>
-  
   <body id="home" class="homepage">
-    <div class="main"><div id="navbar">
-      {{> navbar }}
-    </div>
-    <div class="container-fluid">
-      <section class="text-pureblack backgrounds-white">
-        <div class="menu-head sub-headers">
+    <div class="main">
+      <div id="navbar">
+        {{> navbar }}
+      </div>
+      <div class="container-fluid">
+        <section class="text-pureblack backgrounds-white">
+          <div class="menu-head sub-headers">
             <h3>Search Entire Inventory By Part Number or Description:</h3>
             <div class="row">
               <div class="col-md-6 col-md-offset-3 col-sm-12">
-                <input type="text" name="searchTerm" id="searchTerm" style="width: 70%" class="form-control" value="{{searchterm}}" />
+                <input type="text" name="searchTerm" id="searchTerm" style="width: 70%" class="form-control"
+                  value="{{searchterm}}" />
               </div>
               <div class="col-sm-12 col-md-1 " style="display:ruby">
                 <div class="button right red mt-2">
                   <span class="middle">
-                    <input name="Searchbtn" onclick="search()" type="button"  id="Searchbtn" value="Search" />
+                    <input name="Searchbtn" onclick="search()" type="button" id="Searchbtn" value="Search" />
                   </span>
                   <span class="end"></span>
                   <span class="arrow"></span>
                 </div>
               </div>
-              </div>
-          <br>
-          <h2>Restaurant Equipment & Parts</h2>
-          <h3>GTA Ontario</h3>
-          <div class="sub-header-bottom-trim"></div>
-          <div class="sub-header-bottom-cap"></div>
-        </div>
-        {{> content}}
-      </section>
-    </div>
-    </div>
-    <footer class="footer">
-      <div class="clear"></div>
-    <div class="lower-footer">
-      <div class="lower-footer-center">
-        <div class="col-sm-6">
-          <a href="https://restaurantparts.ca"><img class="so-good" src="../img/logo_dqt2.png"
-              alt="Good Quality for Less"></a>
-        </div>
-  
-        <div class="col-md-6">
-          <section id="legalLinks" class="legal">
-            <p class="ng-binding">&#64; Restaurant Parts Corp <span class="mobile-only-spacing"></span></p>
-            <nav>
-              <a class="border-right" target="_blank" href="https://www.restaurantparts.ca/privacy.html"
-                title="Privacy Statement" data-event="Privacy_Statement" target="_blank">Privacy Statement</a>
-              <a class="border-right" target="_blank" href="https://www.restaurantparts.ca/privacy.html"
-                title="Visitor Agreement" data-event="Visitor_Agreement" target="_blank">Visitor Agreement</a>
-              <a target="_blank" title="Accessibility Statement" data-event="Accessibility_Statement"
-                href="https://www.restaurantparts.ca/privacy.html">Accessibility Statement</a>
-            </nav>
-          </section>
-        </div>
-        <div class="clear"></div>
+            </div>
+            <br>
+            <h2>Restaurant Equipment & Parts</h2>
+            <h3>GTA Ontario</h3>
+            <div class="sub-header-bottom-trim"></div>
+            <div class="sub-header-bottom-cap"></div>
+          </div>
+          {{> content}}
+        </section>
       </div>
     </div>
-  </footer>
-
-</body>
+    <footer class="footer">
+      <div class="container">
+        <div class="clear paddingB20"></div>
+  
+        <div class="row">
+          <div class="col-md-12">
+            <h1>CONTACT US</h1>
+            <ul class="list-unstyled footer-contactus paddingB20">
+              <li class="paddingB10">
+                <strong>
+                  <i class="fa fa-envelope"></i>&nbsp;
+                  <a href="mailto:info@restaurantparts.ca">info@restaurantparts.ca</a>
+                </strong>
+              </li>
+              <li class="paddingB10">
+                <strong>
+                  <i class="fa fa-phone"></i>&nbsp;<a href="tel:289-324-1334" target="_blank">289-324-1334</a>
+                </strong>
+              </li>
+              <li>
+                <strong>
+                  <i class="fa fa-map-marker"></i>&nbsp;
+                  <a href="https://goo.gl/maps/nxv6ThaAdTvy2aij6" target="_blank">
+                    7865 King St W, Bolton, ON L7E 0T9
+                  </a>
+                </strong>
+              </li>
+              <li>
+                <strong>
+                  <i class="fa fa-map-marker"></i>&nbsp;
+                  <a href="https://goo.gl/maps/dHXi3wUSaCy6oBSL9" target="_blank">
+                    23 Hoyle Dr, Brampton, ON L6P 1T5
+                  </a>
+                </strong>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-12">
+            <div class="clear"></div>
+            <div class="lower-footer">
+              <div class="lower-footer-center">
+                <div class="col-sm-6">
+                  <a href="https://restaurantparts.ca"><img class="so-good" src="../img/logo_dqt2.png"
+                      alt="Good Quality for Less"></a>
+                </div>
+  
+                <div class="col-md-6">
+                  <section id="legalLinks" class="legal">
+                    <p class="ng-binding">&#64; Restaurant Parts Corp <span class="mobile-only-spacing"></span></p>
+                    <nav>
+                      <a class="border-right" target="_blank" href="https://www.restaurantparts.ca/privacy.html"
+                        title="Privacy Statement" data-event="Privacy_Statement" target="_blank">Privacy Statement</a>
+                      <a class="border-right" target="_blank" href="https://www.restaurantparts.ca/privacy.html"
+                        title="Visitor Agreement" data-event="Visitor_Agreement" target="_blank">Visitor Agreement</a>
+                      <a target="_blank" title="Accessibility Statement" data-event="Accessibility_Statement"
+                        href="https://www.restaurantparts.ca/privacy.html">Accessibility Statement</a>
+                    </nav>
+                  </section>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
