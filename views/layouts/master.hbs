@@ -23,40 +23,39 @@
   </head>
   
   <body id="home" class="homepage">
-    <div class="main">
-      <div id="navbar">
-        {{> navbar }}
-      </div>
-      <div class="content">
-        <section class="text-pureblack backgrounds-white">
-          <div class="menu-head sub-headers">
-            <form name="frm5" class="orderform container" action="/sp_main_detail" method="post">
-              <div class="col-xs-8 col-xs-offset-2">
-                <h3>Search Entire Inventory By Part Number or Description:</h3>
-                <input type="hidden" name="Cakedesign" id="Cakedesign" value="<?= $_REQUEST['Cakedesign']; ?>" />
-                <input type="text" name="ser_cake" id="ser_cake" style="width:300px;" value="{{../Ser_Part}}" />
-                <div class="button right red">
+    <div class="main"><div id="navbar">
+      {{> navbar }}
+    </div>
+    <div class="container-fluid">
+      <section class="text-pureblack backgrounds-white">
+        <div class="menu-head sub-headers">
+            <h3>Search Entire Inventory By Part Number or Description:</h3>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3 col-sm-12">
+                <input type="text" name="searchTerm" id="searchTerm" style="width: 70%" class="form-control" value="{{searchterm}}" />
+              </div>
+              <div class="col-sm-12 col-md-1 " style="display:ruby">
+                <div class="button right red mt-2">
                   <span class="middle">
-                    <input name="Searchbtn" type="submit" class="sub-btn-new" id="Searchbtn" value="Search"
-                      align="left" />
+                    <input name="Searchbtn" onclick="search()" type="button"  id="Searchbtn" value="Search" />
                   </span>
                   <span class="end"></span>
                   <span class="arrow"></span>
                 </div>
               </div>
-            </form>
-            <br>
-            <h2>Restaurant Equipment & Parts</h2>
-            <h3>GTA Ontario</h3>
-            <div class="sub-header-bottom-trim"></div>
-            <div class="sub-header-bottom-cap"></div>
-          </div>
-          {{> content}}
-        </section>
+              </div>
+          <br>
+          <h2>Restaurant Equipment & Parts</h2>
+          <h3>GTA Ontario</h3>
+          <div class="sub-header-bottom-trim"></div>
+          <div class="sub-header-bottom-cap"></div>
+        </div>
+        {{> content}}
+      </section>
     </div>
-  </div>
-  <footer class="footer">
-    <div class="clear"></div>
+    </div>
+    <footer class="footer">
+      <div class="clear"></div>
     <div class="lower-footer">
       <div class="lower-footer-center">
         <div class="col-sm-6">
@@ -84,12 +83,22 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="../js/Application.min.js"></script>
 <script type="text/javascript" src="../js/sleekslider.js"></script>
 <script type="text/javascript" src="../js/skrollr.js"></script>
 <script type="text/javascript" src="../js/isotope.pkgd.min.js"></script>
-
 <script>
+
+  function search() {
+    var searchTerm = document.getElementById("searchTerm").value;
+    if(searchTerm != "") {
+      window.location.href = "/partdetails?category=&searchterm=" + searchTerm;    
+    }
+    return false;
+  }
+
   $(document).ready(function () {
     // ---------- Banner Slider ---------- //
     $('#sleekslider').sleekslider({
