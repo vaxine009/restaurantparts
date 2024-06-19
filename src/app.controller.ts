@@ -12,6 +12,10 @@ export class AppController {
     return { parts: null };
   }
 
+  @Get('cron')
+  async getCron(@Request() req: any) {
+    this.appService.getCron();
+  }
 
   @Get('categories')
   @Render('pages/categories')

@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CategoriesDto, PartsDetailsDto } from './DTOs';
 import { DatabaseService } from './database/database.service';
+import { Cron, CronExpression } from '@nestjs/schedule';
+import { HttpService } from './http/http.service';
 
 @Injectable()
 export class AppService {
@@ -52,11 +54,13 @@ export class AppService {
   }
 
   constructor(
-    private readonly databaseService: DatabaseService
+    private readonly databaseService: DatabaseService,
+    private readonly httpService: HttpService
+
   ) { }
 
-  getHello(): string {
-    return 'Hello service1!';
+  getCron(): string {
+    return 'Cron is running!';
   }
 
   async getParts(): Promise<CategoriesDto[]> {
@@ -77,6 +81,18 @@ export class AppService {
 
     return dtolist
 
+  }
+
+  @Cron('0 */5 6-23 * * *')
+  async handleCron() {
+    console.log("test cron every 10 mins: " + new Date());
+    try {
+      let res = await this.httpService.get(process.env.SITE_URL + "/cron");
+      console.log("response: " + res);
+    }
+    catch (err) {
+      console.log("error:" + err);
+    }
   }
 
 }

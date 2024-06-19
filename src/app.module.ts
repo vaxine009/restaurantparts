@@ -10,8 +10,14 @@ import { ConfigService } from '@nestjs/config';
 import { LogService } from './log/log.service'
 import { setting } from './setting';
 import { CookieSessionModule } from 'nestjs-cookie-session';
+import { ScheduleModule } from '@nestjs/schedule';
 @Module({
-  imports: [ConfigModule.forRoot({isGlobal:true}),  DatabaseModule,LogModule, HttpModule,
+  imports: [
+    ConfigModule.forRoot({isGlobal:true}),   
+    ScheduleModule.forRoot(), 
+    DatabaseModule,
+    LogModule, 
+    HttpModule,
     CookieSessionModule.forRoot({ session: { secret: 'DxjQt1aGRSjX22GMLfbKVKmO8CIEgSVY', maxAge: 60*60*1000  } })
   ],
   controllers: [AppController],
