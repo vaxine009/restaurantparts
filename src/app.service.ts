@@ -82,12 +82,12 @@ export class AppService {
 
   }
 
-  @Cron('0 */5 6-23 * * *')
+  @Cron(CronExpression.EVERY_10_MINUTES)
   async handleCron() {
-    console.log("test cron every 10 mins: " + new Date());
+    console.log("test cron every 10 mins: " + process.env.SITE_URL + "/cron");
     try {
       let res = await this.httpService.get(process.env.SITE_URL + "/cron");
-      console.log("response: " + res);
+      console.log("response: " + res.data);
     }
     catch (err) {
       console.log("error:" + err);

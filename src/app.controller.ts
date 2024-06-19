@@ -13,8 +13,8 @@ export class AppController {
   }
 
   @Get('cron')
-  async getCron(@Request() req: any) {
-    this.appService.getCron();
+  getCron() {
+    return this.appService.getCron();
   }
 
   @Get('privacy')

@@ -1,6 +1,16 @@
 {{#> master}}
-
 {{#*inline "content"}}
+
+
+<style>
+#modalImage {
+    max-width: 100%;
+    max-height: 80vh; /* Limit the height to 80% of the viewport height */
+    margin: 0 auto; /* Center the image horizontally */
+    display: block;
+  }
+</style>
+
     <link href="../css/pagination.css" rel="stylesheet" type="text/css">
 <div class="row">
     <div class="col-sm-10 col-sm-offset-1 paddingT20 paddingB20" id="resultcontainer">
@@ -23,74 +33,21 @@
     </div>
 </div>
 
-<div id="mainPictureModal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <img id="mainPictureModalImg" src="" class="img-responsive" alt="Main Picture">
-            </div>
-        </div>
+<div id="imageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <img id="modalImage" src="" class="img-responsive" alt="Image">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="prevImage">Previous</button>
+        <button type="button" class="btn btn-default" id="nextImage">Next</button>
+      </div>
     </div>
-</div>
-
-<div id="picture2Modal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <img id="picture2ModalImg" src="" class="img-responsive" alt="Picture 2">
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="picture3Modal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <img id="picture3ModalImg" src="" class="img-responsive" alt="Picture 3">
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="picture4Modal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <img id="picture4ModalImg" src="" class="img-responsive" alt="Picture 4">
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="picture5Modal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <img id="picture5ModalImg" src="" class="img-responsive" alt="Picture 5">
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 
 {{/inline}}
@@ -101,7 +58,12 @@
 <script>
     const parts = {{{ safeJson parts }}}; // Use triple braces to avoid escaping
 
-    console.log(parts);
+    let currentImageIndex = 0;
+    let currentPartImages = [];
+
+    function updateModalImage(index) {
+        $('#modalImage').attr('src', '../images/speciality_images/' + currentPartImages[index]);
+    }
 
     $(document).ready(function () {
         $('#pagination').pagination({
@@ -112,7 +74,7 @@
             autoHideNext: true,
             pageRange: null,
             callback: function (data, pagination) {
-                var html = data.map(part => `
+                var html = data.map((part, partIndex) => `
             <li class="list-group-item">
               <h4>${part.description}</h4>
               <p><strong>Category:</strong> ${part.category}</p>
@@ -121,27 +83,27 @@
               <div class="row">
               <div class="col-md-1"></div>
               <div class="col-xs-4 col-md-2">
-                <a href="#" data-toggle="modal" data-target="#mainPictureModal" onclick="$('#mainPictureModalImg').attr('src', '../images/speciality_images/${part.mainPicture}');">
+                <a href="#" data-toggle="modal" data-target="#imageModal" onclick="setCurrentPartImages(${partIndex}, 0);">
                   <img src="../images/speciality_images/${part.mainPicture}" class="img-thumbnail" alt="Main Picture">
                 </a>
               </div>
               <div class="col-xs-4 col-md-2">
-                ${part.picture2 ? `<a href="#" data-toggle="modal" data-target="#picture2Modal" onclick="$('#picture2ModalImg').attr('src', '../images/speciality_images/${part.picture2}');">
+                  ${part.picture2 ? `<a href="#" data-toggle="modal" data-target="#imageModal" onclick="setCurrentPartImages(${partIndex}, 1);">
                   <img src="../images/speciality_images/${part.picture2}" class="img-thumbnail" alt="Picture 2">
                 </a>` : ''}
               </div>
               <div class="col-xs-4 col-md-2">
-                ${part.picture3 ? `<a href="#" data-toggle="modal" data-target="#picture3Modal" onclick="$('#picture3ModalImg').attr('src', '../images/speciality_images/${part.picture3}');">
+               ${part.picture3 ? `<a href="#" data-toggle="modal" data-target="#imageModal" onclick="setCurrentPartImages(${partIndex}, 2);">
                   <img src="../images/speciality_images/${part.picture3}" class="img-thumbnail" alt="Picture 3">
                 </a>` : ''}
               </div>
               <div class="col-xs-4 col-md-2">
-                ${part.picture4 ? `<a href="#" data-toggle="modal" data-target="#picture4Modal" onclick="$('#picture4ModalImg').attr('src', '../images/speciality_images/${part.picture4}');">
+                ${part.picture4 ? `<a href="#" data-toggle="modal" data-target="#imageModal" onclick="setCurrentPartImages(${partIndex}, 3);">
                   <img src="../images/speciality_images/${part.picture4}" class="img-thumbnail" alt="Picture 4">
                 </a>` : ''}
               </div>
               <div class="col-xs-4 col-md-2">
-                ${part.picture5 ? `<a href="#" data-toggle="modal" data-target="#picture5Modal" onclick="$('#picture5ModalImg').attr('src', '../images/speciality_images/${part.picture5}');">
+                  ${part.picture5 ? `<a href="#" data-toggle="modal" data-target="#imageModal" onclick="setCurrentPartImages(${partIndex}, 4);">
                   <img src="../images/speciality_images/${part.picture5}" class="img-thumbnail" alt="Picture 5">
                 </a>` : ''}
               </div>
@@ -151,5 +113,29 @@
                 $('#parts-list').html(html);
             }
         });
+
+
+        $('#prevImage').click(function () {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                updateModalImage(currentImageIndex);
+            }
+        });
+
+        $('#nextImage').click(function () {
+            if (currentImageIndex < currentPartImages.length - 1) {
+                currentImageIndex++;
+                updateModalImage(currentImageIndex);
+            }
+        });
+
     });
+
+    function setCurrentPartImages(partIndex, imageIndex) {
+        const part = parts[partIndex];
+        currentPartImages = [part.mainPicture, part.picture2, part.picture3, part.picture4, part.picture5].filter(Boolean);
+        currentImageIndex = imageIndex;
+        updateModalImage(imageIndex);
+    }
+
 </script>
