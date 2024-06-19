@@ -119,27 +119,28 @@
               <p><strong>Price:</strong> $${part.price}</p>
               <p>${part.quantity === 0 ? '<strong class="text-danger">Out of Stock</strong>' : ''}</p>
               <div class="row">
-              <div class="col-xs-2">
+              <div class="col-md-1"></div>
+              <div class="col-xs-4 col-md-2">
                 <a href="#" data-toggle="modal" data-target="#mainPictureModal" onclick="$('#mainPictureModalImg').attr('src', '../images/speciality_images/${part.mainPicture}');">
                   <img src="../images/speciality_images/${part.mainPicture}" class="img-thumbnail" alt="Main Picture">
                 </a>
               </div>
-              <div class="col-xs-2">
+              <div class="col-xs-4 col-md-2">
                 ${part.picture2 ? `<a href="#" data-toggle="modal" data-target="#picture2Modal" onclick="$('#picture2ModalImg').attr('src', '../images/speciality_images/${part.picture2}');">
                   <img src="../images/speciality_images/${part.picture2}" class="img-thumbnail" alt="Picture 2">
                 </a>` : ''}
               </div>
-              <div class="col-xs-2">
+              <div class="col-xs-4 col-md-2">
                 ${part.picture3 ? `<a href="#" data-toggle="modal" data-target="#picture3Modal" onclick="$('#picture3ModalImg').attr('src', '../images/speciality_images/${part.picture3}');">
                   <img src="../images/speciality_images/${part.picture3}" class="img-thumbnail" alt="Picture 3">
                 </a>` : ''}
               </div>
-              <div class="col-xs-2">
+              <div class="col-xs-4 col-md-2">
                 ${part.picture4 ? `<a href="#" data-toggle="modal" data-target="#picture4Modal" onclick="$('#picture4ModalImg').attr('src', '../images/speciality_images/${part.picture4}');">
                   <img src="../images/speciality_images/${part.picture4}" class="img-thumbnail" alt="Picture 4">
                 </a>` : ''}
               </div>
-              <div class="col-xs-2">
+              <div class="col-xs-4 col-md-2">
                 ${part.picture5 ? `<a href="#" data-toggle="modal" data-target="#picture5Modal" onclick="$('#picture5ModalImg').attr('src', '../images/speciality_images/${part.picture5}');">
                   <img src="../images/speciality_images/${part.picture5}" class="img-thumbnail" alt="Picture 5">
                 </a>` : ''}

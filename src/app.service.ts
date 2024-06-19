@@ -7,7 +7,6 @@ import { HttpService } from './http/http.service';
 @Injectable()
 export class AppService {
   async getPartsDetails(searchterm: any, categoryId: any) : Promise<PartsDetailsDto[]> {
-    console.log("searchterm:" + searchterm + ", categoryId:" + categoryId);
 
     if (!searchterm && !categoryId) {
       return null;
