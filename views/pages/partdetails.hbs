@@ -78,7 +78,6 @@
             callback: function (data, pagination) {
                 currentPage = pagination.pageNumber; 
                 partsPerPage = pagination.pageSize; 
-                console.log(pagination);
                 const startIndex = (currentPage - 1) * partsPerPage;
                 const html = data.map((part, index) => {
                     const globalPartIndex = startIndex + index;
@@ -141,11 +140,8 @@
     });
 
     function setCurrentPartImages(partIndex, imageIndex) {
-        console.log(partIndex);
         const part = parts[partIndex];
         currentPartImages = [part.mainPicture, part.picture2, part.picture3, part.picture4, part.picture5].filter(Boolean);
-        console.log(part);
-        console.log(currentPartImages);
         currentImageIndex = imageIndex;
         updateModalImage(imageIndex);
     }
