@@ -17,6 +17,12 @@ export class AppController {
     this.appService.getCron();
   }
 
+  @Get('privacy')
+  @Render('pages/privacy')
+  async privacy(@Request() req: any) {
+    return;
+  }
+
   @Get('categories')
   @Render('pages/categories')
   async categories(@Request() req: any) {
