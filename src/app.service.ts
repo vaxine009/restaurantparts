@@ -6,6 +6,30 @@ import { HttpService } from './http/http.service';
 
 @Injectable()
 export class AppService {
+
+  async getPartDetails(id: number): Promise<PartsDetailsDto> {
+    let sql = `SELECT I.*, S.sname FROM inventory I INNER JOIN specialsize S ON I.categoryId = S.id where I.Id = ${id} ORDER BY description ASC`;
+    let results = await this.databaseService.queryMySql(sql, []);
+
+
+    for (let i: number = 0; i < results.length; i++) {
+      let dto: PartsDetailsDto = new PartsDetailsDto();
+      dto.id = results[i]['id'];
+      dto.description = results[i]['description'];
+      dto.category = results[i]['sname'];
+      dto.price = results[i]['price'];
+      dto.quantity = results[i]['quantity'];
+      dto.mainPicture = results[i]['mainPicture'];
+      dto.picture2 = results[i]['picture2'];
+      dto.picture3 = results[i]['picture3'];
+      dto.picture4 = results[i]['picture4'];
+      dto.picture5 = results[i]['picture5'];
+      return dto
+    }
+
+    return null;
+  }
+
   async getPartsDetails(searchterm: any, categoryId: any) : Promise<PartsDetailsDto[]> {
 
     if (!searchterm && !categoryId) {

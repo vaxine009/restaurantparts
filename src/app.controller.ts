@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, Render ,Request } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Query, Render ,Request } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -35,6 +35,14 @@ export class AppController {
     let searchterm = queryParams.searchterm;
     let categoryId = queryParams.categoryId;
     return { parts: await this.appService.getPartsDetails(searchterm, categoryId), searchterm :searchterm };
+  }
 
+  @Get('part/:id')
+  @Render('pages/part')
+  async partById(@Param('id', ParseIntPipe) id: number) {
+    if (!id) return { part: null }
+
+    const partDetails = await this.appService.getPartDetails(id);
+    return { part: partDetails };
   }
 }

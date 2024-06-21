@@ -28,6 +28,10 @@ async function bootstrap() {
     return JSON.stringify(context);
   });
 
+  hbs.registerHelper('lt', function (v1: number, v2: number) {
+    return v1 < v2;
+  });
+
   app.setViewEngine('hbs');
   await app.listen(3001);
 }
