@@ -117,9 +117,9 @@
                 `;
                 }).join('');
                 $('#parts-list').html(html);
+                scrollToTop();
             }
         });
-
 
         $('#prevImage').click(function () {
             if (currentImageIndex > 0) {
@@ -134,8 +134,11 @@
                 updateModalImage(currentImageIndex);
             }
         });
-
     });
+
+   function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     function setCurrentPartImages(partIndex, imageIndex) {
         const part = parts[partIndex];

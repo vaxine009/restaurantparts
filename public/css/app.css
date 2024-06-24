@@ -4176,8 +4176,8 @@ section#newsletter {
         }
 
         .sub-headers h2 {
-            margin: 10px 0 0;
-            font-size: 2.625em;
+            margin: 5px 0 0;
+            font-size: 1.20em;
             letter-spacing: -0.06944em;
             color: #E7131A;
             font-family: plutoBold, Arial, sans-serif;
@@ -4186,7 +4186,7 @@ section#newsletter {
 
         .sub-headers h3 {
             margin: 0 0 30px;
-            font-size: 1.25em;
+            font-size: 1em;
             color: #6e5553;
             font-style: italic;
         }
@@ -11521,3 +11521,10 @@ max-height:1250px; overflow:hidden
 
 
 }
+
+@media only screen and (max-width: 991px) {
+        
+  #searchTerm{
+      margin-bottom: 5px;
+  }   
+ }
