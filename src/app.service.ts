@@ -52,7 +52,7 @@ export class AppService {
       whereClause = "";
     }
 
-    let sql = `SELECT I.*, S.sname FROM inventory I INNER JOIN specialsize S ON I.categoryId = S.id ${whereClause} ORDER BY description ASC`;
+    let sql = `SELECT I.*, S.sname FROM inventory I INNER JOIN specialsize S ON I.categoryId = S.id ${whereClause} ORDER BY I.price DESC, I.categoryId, I.description ASC`;
     let results = await this.databaseService.queryMySql(sql, []);
 
     let dtolist: PartsDetailsDto[] = [];
